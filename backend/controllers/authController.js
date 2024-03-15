@@ -59,7 +59,7 @@ export const loginController = async (req, res) => {
     );
 
     if (!user || !isPasswordCorrect) {
-      return res.status(400).json({ message: "Invalid user or password" });
+      return res.status(400).json({ error: "Invalid user or password" });
     }
 
     generateToken(user._id, res);
@@ -76,7 +76,7 @@ export const loginController = async (req, res) => {
   }
 };
 // controller for logout
-export const logoutController =  (req, res) => {
+export const logoutController = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
     res.status(200).json({ message: "Logged out successfully." });

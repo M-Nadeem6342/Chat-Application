@@ -13,7 +13,7 @@ const proctectRoute = async (req, res, next) => {
     }
     const user = await User.findById(decode.userId).select("-password");
     if (!user) {
-      return res.status(401).json({ error: "User not found." });
+      return res.status(404).json({ error: "User not found." });
     }
     req.user = user;
     next();
